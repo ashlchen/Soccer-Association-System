@@ -1,0 +1,4 @@
+MYSQL_DATABASE=larsproject
+MYSQL_HOST=server_name.aws.com
+MYSQL_USER=larsadmin
+MYSQL_PASSWORD=larsSecretpassword
