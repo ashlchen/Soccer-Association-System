@@ -1,10 +1,10 @@
 const SomeApp = {
     data() {
       return {
-        students: [],
-        selectedStudent: null,
-        offers: [],
-        offerForm: {}
+        referee: [],
+        selectedReferee: null,
+        gameAssignment: [],
+        // offerForm: {}
       }
     },
     computed: {},
@@ -17,32 +17,32 @@ const SomeApp = {
             const d = new Intl.NumberFormat("en-US").format(n);
             return "$ " + d;
         },
-        selectStudent(s) {
-            if (s == this.selectedStudent) {
+        selectReferee(r) {
+            if (r == this.selectedReferee) {
                 return;
             }
-            this.selectedStudent = s;
-            this.offers = [];
-            this.fetchOfferData(this.selectedStudent);
+            this.selectedReferee = r;
+            this.gameAssignment = [];
+            this.fetchGameAssignmentData(this.selectedReferee);
         },
-        fetchStudentData() {
-            fetch('/api/student/')
+        fetchRefereeData() {
+            fetch('/api/referee/')
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
-                this.students = responseJson;
+                this.referee = responseJson;
             })
             .catch( (err) => {
                 console.error(err);
             })
         },
-        fetchOfferData(s) {
-            console.log("Fetching offer data for ", s);
-            fetch('/api/offer/?student=' + s.id)
+        fetchGameAssignmentData(r) {
+            console.log("Fetching assignment data for ", r);
+            fetch('/api/referee/?referee=' + r.RefereeID)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
-                this.offers = responseJson;
+                this.gameAssignment = responseJson;
             })
             .catch( (err) => {
                 console.error(err);
@@ -75,7 +75,7 @@ const SomeApp = {
         }
     },
     created() {
-        this.fetchStudentData();
+        this.fetchRefereeData();
     }
   
   }
