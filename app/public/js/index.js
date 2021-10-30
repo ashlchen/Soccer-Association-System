@@ -4,8 +4,8 @@ const SomeApp = {
         referee: [],
         selectedReferee: null,
         gameAssignment: [],
-        game: []
-        // offerForm: {}
+        game: [],
+        refereeForm: {}
       }
     },
     computed: {},
@@ -23,7 +23,9 @@ const SomeApp = {
                 return;
             }
             this.selectedReferee = r;
+            this.refereeForm = [];
             this.gameAssignment = [];
+            this.fetchRefereeData();
             this.fetchGameAssignmentData(this.selectedReferee);
         },
         fetchRefereeData() {
@@ -63,14 +65,21 @@ const SomeApp = {
                 console.error(error);
             });
         },
-        postNewOffer(evt) {
-          this.offerForm.studentId = this.selectedStudent.id;        
-          console.log("Posting:", this.offerForm);
+        postReferee(evt) {
+            if (this.selectedReferee === null) {
+                this.postNewReferee(evt);
+            } else {
+                this.postEditReferee(evt);
+            }
+          },
+        postNewReferee(evt) {
+          this.refereeForm.RefereeID = this.selectedReferee.RefereeID;        
+          console.log("Posting:", this.refereeForm);
           // alert("Posting!");
   
-          fetch('api/offer/create.php', {
+          fetch('api/referee/create.php', {
               method:'POST',
-              body: JSON.stringify(this.offerForm),
+              body: JSON.stringify(this.refereeForm),
               headers: {
                 "Content-Type": "application/json; charset=utf-8"
               }
@@ -82,9 +91,57 @@ const SomeApp = {
               this.offers = json;
               
               // reset the form
-              this.offerForm = {};
+              this.refereeForm = {};
             });
-        }
+        },
+        postEditReferee(evt) {
+            this.refereeForm.RefereeID = this.selectedReferee.RefereeID;
+            this.refereeForm.id = this.selectedReferee.id;       
+            
+            console.log("Updating!", this.refereeForm);
+    
+            fetch('api/referee/update.php', {
+                method:'POST',
+                body: JSON.stringify(this.refereeForm),
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                }
+              })
+              .then( response => response.json() )
+              .then( json => {
+                console.log("Returned from post:", json);
+                // TODO: test a result was returned!
+                this.offers = json;
+                
+                this.resetRefereeForm();
+              });
+          },
+        postDeleteReferee(r) {
+            if (!confirm("Are you sure you want to delete the referee "+r.RefereeFirst+"?")) {
+                return;
+            }
+            
+            fetch('api/referee/delete.php', {
+                method:'POST',
+                body: JSON.stringify(r),
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                }
+              })
+              .then( response => response.json() )
+              .then( json => {
+                console.log("Returned from post:", json);
+                // TODO: test a result was returned!
+                this.offers = json;
+                
+                this.resetRefereeForm();
+              });
+          },
+        resetRefereeForm() {
+            this.selectedReferee = null;
+            this.refereeForm = {};
+          }
+      
     },
     created() {
         this.fetchRefereeData();

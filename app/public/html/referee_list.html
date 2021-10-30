@@ -54,7 +54,7 @@
             <h1>Details for {{ selectedReferee.RefereeFirst }}</h1> -->
 
 
-      <div class="col col-6"><h1>Referee List</h1>      
+      <div class="column"><h1>Referee List</h1>      
       <div>      
       <table class="table">
         <thead>
@@ -65,8 +65,7 @@
             <th>Grade</th>
             <th>Private Rating</th>
             <th>Detail</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th>Status</th>
           </tr>
         </thead>
           <tbody>
@@ -82,12 +81,9 @@
                   </td>
                   <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm"
-                      v-on:click="selectReferee(r)">Edit</button>
-                  </td>
-                  <td>
+                      v-on:click="selectReferee(r))">Update</button>
                     <button type="button" class="btn btn-outline-secondary btn-sm"
-                            v-on:click="postDeleteReferee(r)">Delete</button>
-                      
+                      v-on:click="postDeleteReferee(r)">Delete</button>
                   </td>
               </tr>
           </tbody>
@@ -107,7 +103,6 @@
                 <tr v-for="g in gameAssignment">
                     <td>{{ g.GameID }}</td>
                     <td>{{ g.PositionStatus }}</td>
-                    <td></td>
                     <!-- <td>
                       <button type="button" class="btn btn-outline-secondary btn-sm"
                         v-on:click="selectOffer(offer)">Edit</button>
@@ -121,68 +116,45 @@
 
       </div>
 
-      <div class="col col-6">
-        <h3>{{ selectedReferee === null ? "Add" : "Edit" }} Referee</h3>
-              <form v-on:submit.prevent="postReferee">
-                <div class="mb-3">
-                  <label for="fname" class="form-label">First Name <span class="reqd">*</span></label>
-                  <input type="text" v-model="refereeForm.RefereeFirst"
-                   class="form-control" id="fname" required="required">
-                </div>
-                <div class="mb-3">
-                  <label for="lname" class="form-label">Last Name <span class="reqd">*</span></label>
-                  <input type="text" v-model="refereeForm.RefereeLast" class="form-control" id="lname" required="required">
-                </div>
-                <div class="mb-3">
-                  <label for="age" class="form-label">Age <span class="reqd">*</span></label>
-                  <input type="number" v-model="refereeForm.Age" class="form-control" id="age" required="required">
-                </div>
-                <div class="mb-3">
-                  <label for="grade" class="form-label">Grade<span class="reqd">*</span></label>
-                  <input type="number" v-model="refereeForm.RefereeGrade" class="form-control" id="grade" required="required">
-                </div>
-                <div class="mb-3">
-                  <label for="rating" class="form-label">Private Rating <span class="reqd">*</span></label>
-                  <input type="number" v-model="refereeForm.RefereeSkill" class="form-control" id="rating" required="required">
-                </div>
-                <!-- <div class="mb-3">
-                  <label for="rating" class="form-label">Private Rating <span class="reqd">*</span></label>
-                  <select v-model="refereeForm.RefereeSkill" class="form-select" id="rating" required="required">
-                    <option value="Declined">Declined</option>
-                    <option value="Accepted">Accepted</option>
-                  </select>
-                </div> -->
-                <button type="submit" class="btn btn-primary">{{ selectedReferee === null ? "Add" : "Edit" }} Referee</button>
-                <button type="button" class="btn btn-outline-secondary" 
-                  v-if="selectedReferee"
-                  v-on:click="resetRefereeForm">Cancel</button>
-              </form>
-        </div>
-    
-      <div class="column"><h1>Game List</h1>      
-        <div>      
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Game ID</th>
-              <th>Field</th>
-              <th>GameDate</th>
-            </tr>
-          </thead>
-            <tbody>
-                <tr v-for="g in game">
-                    <td>{{ g.GameID }}</td>
-                    <td>{{ g.Field }}</td>
-                    <td>{{ g.GameDate }}</td>
-                    <!-- <td>
-                      <button type="button" class="btn btn-outline-secondary btn-sm"
-                        v-on:click="selectReferee(r)">Detail</button>
-                    </td> -->
-                </tr>
-            </tbody>
-        </table>
-        </div>  
+      <div>
+      <h3>{{ selectedReferee === null ? "Add" : "Edit" }} Referee</h3>
+            <form v-on:submit.prevent="postReferee">
+              <div class="mb-3">
+                <label for="fname" class="form-label">First Name <span class="reqd">*</span></label>
+                <input type="text" v-model="refereeForm.RefereeFirst"
+                 class="form-control" id="fname" required="required">
+              </div>
+              <div class="mb-3">
+                <label for="lname" class="form-label">Last Name <span class="reqd">*</span></label>
+                <input type="text" v-model="refereeForm.RefereeLast" class="form-control" id="lname" required="required">
+              </div>
+              <div class="mb-3">
+                <label for="age" class="form-label">Age <span class="reqd">*</span></label>
+                <input type="number" v-model="refereeForm.Age" class="form-control" id="age" required="required">
+              </div>
+              <div class="mb-3">
+                <label for="grade" class="form-label">Grade<span class="reqd">*</span></label>
+                <input type="number" v-model="refereeForm.RefereeGrade" class="form-control" id="grade" required="required">
+              </div>
+              <div class="mb-3">
+                <label for="rating" class="form-label">Private Rating <span class="reqd">*</span></label>
+                <input type="number" v-model="refereeForm.RefereeSkill" class="form-control" id="rating" required="required">
+              </div>
+              <!-- <div class="mb-3">
+                <label for="rating" class="form-label">Private Rating <span class="reqd">*</span></label>
+                <select v-model="refereeForm.RefereeSkill" class="form-select" id="rating" required="required">
+                  <option value="Declined">Declined</option>
+                  <option value="Accepted">Accepted</option>
+                </select>
+              </div> -->
+              <button type="submit" class="btn btn-primary">{{ selectedReferee === null ? "Add" : "Edit" }}Referee</button>
+              <button type="button" class="btn btn-outline-secondary" 
+                v-if="selectedReferee"
+                v-on:click="resetRefereeForm">Cancel</button>
+            </form>
       </div>
+    
+
       </div>
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
