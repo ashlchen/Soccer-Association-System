@@ -4,6 +4,7 @@ const SomeApp = {
         referee: [],
         selectedReferee: null,
         gameAssignment: [],
+        game: []
         // offerForm: {}
       }
     },
@@ -31,6 +32,17 @@ const SomeApp = {
             .then( (responseJson) => {
                 console.log(responseJson);
                 this.referee = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+        },
+        fetchGameData() {
+            fetch('/api/Game/')
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.game = responseJson;
             })
             .catch( (err) => {
                 console.error(err);
