@@ -38,7 +38,7 @@ const SomeApp = {
         },
         fetchGameAssignmentData(r) {
             console.log("Fetching assignment data for ", r);
-            fetch('/api/referee/?referee=' + r.RefereeID)
+            fetch('/api/GameAssignment/?RefereeID=' + r.RefereeID)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);

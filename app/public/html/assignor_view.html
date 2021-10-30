@@ -41,8 +41,18 @@
       </ul>
 
 
-      <div id="offerApp">
+      <div id="offerApp" class="container">
 
+        <!-- <div v-for="r in referee" v-on:click="selectReferee(r)"
+             :class="['referee', {selected: selectedReferee && r.RefereeID == selectedReferee.RefereeID}]">
+              <span class="RefereeFirst">{{ r.RefereeFirst }}</span><br>
+            </div>
+          </div>
+
+          <div  v-if="selectedReferee">
+            <h1>Details for {{ selectedReferee.RefereeFirst }}</h1> -->
+
+      <div>      
       <table class="table">
         <thead>
           <tr>
@@ -68,6 +78,34 @@
               </tr>
           </tbody>
       </table>
+      </div>  
+    
+      <div v-if="selectedReferee">
+        <h1>Game Assignment Detail for {{ selectedReferee.RefereeFirst }}</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>GameID</th>
+              <th>Position Status</th>
+            </tr>
+          </thead>
+            <tbody>
+                <tr v-for="g in gameAssignment">
+                    <td>{{ g.GameID }}</td>
+                    <td>{{ g.PositionStatus }}</td>
+                    <td></td>
+                    <!-- <td>
+                      <button type="button" class="btn btn-outline-secondary btn-sm"
+                        v-on:click="selectOffer(offer)">Edit</button>
+                      <button type="button" class="btn btn-outline-secondary btn-sm"
+                        v-on:click="postDeleteOffer(offer)">Delete</button>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+     
+
+      </div>
 
       </div>
 
