@@ -78,11 +78,11 @@
                   <td>{{ r.RefereeSkill }}</td>
                   <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm"
-                      v-on:click="selectReferee(r)">Detail</button>
+                      v-on:click="selectRefereeDetail(r)">Detail</button>
                   </td>
                   <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm"
-                      v-on:click="selectReferee(r)">Edit</button>
+                      v-on:click="selectRefereeEdit(r)">Edit</button>
                   </td>
                   <td>
                     <button type="button" class="btn btn-outline-secondary btn-sm"
@@ -94,35 +94,10 @@
       </table>
       </div>  
     
-      <div v-if="selectedReferee">
-        <h1>Game Assignment Detail for {{ selectedReferee.RefereeFirst }}</h1>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>GameID</th>
-              <th>Position Status</th>
-            </tr>
-          </thead>
-            <tbody>
-                <tr v-for="g in gameAssignment">
-                    <td>{{ g.GameID }}</td>
-                    <td>{{ g.PositionStatus }}</td>
-                    <td></td>
-                    <!-- <td>
-                      <button type="button" class="btn btn-outline-secondary btn-sm"
-                        v-on:click="selectOffer(offer)">Edit</button>
-                      <button type="button" class="btn btn-outline-secondary btn-sm"
-                        v-on:click="postDeleteOffer(offer)">Delete</button>
-                    </td> -->
-                </tr>
-            </tbody>
-        </table>
-     
-
-      </div>
+      
 
       <div class="col col-6">
-        <h3>{{ selectedReferee === null ? "Add" : "Edit" }} Referee</h3>
+        <h3>{{ selectedRefereeEdit === null ? "Add" : "Edit" }} Referee</h3>
               <form v-on:submit.prevent="postReferee">
                 <div class="mb-3">
                   <label for="fname" class="form-label">First Name <span class="reqd">*</span></label>
@@ -159,35 +134,41 @@
               </form>
         </div>
     
-      <div class="column"><h1>Game List</h1>      
-        <div>      
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Game ID</th>
-              <th>Field</th>
-              <th>GameDate</th>
-            </tr>
-          </thead>
-            <tbody>
-                <tr v-for="g in game">
-                    <td>{{ g.GameID }}</td>
-                    <td>{{ g.Field }}</td>
-                    <td>{{ g.GameDate }}</td>
-                    <!-- <td>
-                      <button type="button" class="btn btn-outline-secondary btn-sm"
-                        v-on:click="selectReferee(r)">Detail</button>
-                    </td> -->
-                </tr>
-            </tbody>
-        </table>
-        </div>  
-      </div>
+     
       </div>
     </div>
+
+    <div id="AssignmentApp" v-if="selectedReferee">
+      <h1>Game Assignment Detail for {{ selectedReferee.RefereeFirst }}</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>GameID</th>
+            <th>Position Status</th>
+          </tr>
+        </thead>
+          <tbody>
+              <tr v-for="g in gameAssignment">
+                  <td>{{ g.GameID }}</td>
+                  <td>{{ g.PositionStatus }}</td>
+                  <td></td>
+                  <!-- <td>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                      v-on:click="selectOffer(offer)">Edit</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm"
+                      v-on:click="postDeleteOffer(offer)">Delete</button>
+                  </td> -->
+              </tr>
+          </tbody>
+      </table>
+   
+
+    </div>
+
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 
     <script src="../js/index.js"></script>
+    <script src="../js/assignment.js"></script>
   </body>
 </html>
