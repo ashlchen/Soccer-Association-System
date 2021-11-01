@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+    <title>ISRA Game Assignments</title>
+    <style>
+      body {background-color: #F6F3E7;}
+    </style>
+    <script src="https://unpkg.com/vue@next"></script>
+
+  </head>
+
+  <body>
+    <h1 class="text-center">Indiana Soccer Referees Association</h1>
+    <h3 class="text-center">Welcome to the ISRA Game Assignments</h3>
+    <h5 class="text-center">Spring 2022</h5>
+
+
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="assignment.html">Assignments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="schedule.html">Schedule</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Season Scores</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+      </ul>
+
+
+
+    <div id="AssignmentApp" class="container">
+    <div class="row align-items-start">
+        <!-- <div v-for="r in referee" v-on:click="selectReferee(r)"
+             :class="['referee', {selected: selectedReferee && r.RefereeID == selectedReferee.RefereeID}]">
+              <span class="RefereeFirst">{{ r.RefereeFirst }}</span><br>
+            </div>
+          </div>
+
+          <div  v-if="selectedReferee">
+            <h1>Details for {{ selectedReferee.RefereeFirst }}</h1> -->
+
+
+      
+    
+      <div class="column"><h1>Assignment List</h1>      
+        <div>      
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Game ID</th>
+              <th>Referee ID</th>
+              <th>Position Status</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+            <tbody>
+                <tr v-for="a in gameAssignment">
+                    <td>{{ a.GameID }}</td>
+                    <td>{{ a.RefereeID }}</td>
+                    <td>{{ a.PositionStatus }}</td>
+                    <!-- <td>
+                      <button type="button" class="btn btn-outline-secondary btn-sm"
+                        v-on:click="selectAssginmentDetail(a)">Detail</button>
+                    </td> -->
+                    <td>
+                      <button type="button" class="btn btn-outline-secondary btn-sm"
+                        v-on:click="selectAssignmentEdit(a)">Edit</button>
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-outline-secondary btn-sm"
+                              v-on:click="postDeleteAssignment(a)">Delete</button>
+                        
+                    </td>
+                    <!-- <td>
+                      <button type="button" class="btn btn-outline-secondary btn-sm"
+                        v-on:click="selectReferee(r)">Detail</button>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+        </div>  
+      </div>
+
+      <div class="col col-6">
+        <h3>{{ selectedAssignmentEdit === null ? "Add" : "Edit" }} Assignment</h3>
+              <form v-on:submit.prevent="postAssignment">
+                <div class="mb-3">
+                  <label for="GameID" class="form-label">Game ID <span class="reqd">*</span></label>
+                  <input type="text" v-model="assignmentForm.GameID"
+                   class="form-control" id="GameID" required="required">
+                </div>
+                <div class="mb-3">
+                  <label for="RefereeID" class="form-label">RefereeID <span class="reqd">*</span></label>
+                  <input type="text" v-model="assignmentForm.RefereeID" class="form-control" id="RefereeID" required="required">
+                </div>
+                <div class="mb-3">
+                  <label for="PositionStatus" class="form-label">Position Status <span class="reqd">*</span></label>
+                  <select v-model="assignmentForm.PositionStatus" class="form-select" id="PositionStatus" required="required">
+                    <option value="Pending">Pending</option>
+                    <option value="Accepted">Accepted</option>
+                    <option value="Unassigned">Unassigned</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">{{ selectedAssignmentEdit === null ? "Add" : "Edit" }} Assignment</button>
+                <button type="button" class="btn btn-outline-secondary" 
+                  v-if="selectedAssignment"
+                  v-on:click="resetAssignmentForm">Cancel</button>
+              </form>
+        </div>
+
+  
+      </div>
+
+      </div>
+
+      
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+
+    <script src="../js/assignment.js"></script>
+  </body>
+</html>

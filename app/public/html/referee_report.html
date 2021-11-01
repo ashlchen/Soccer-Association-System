@@ -41,39 +41,34 @@
       </ul>
 
 
-      <div id="offerApp">
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-            <th>Grade</th>
-            <th>Private Rating</th>
-            <th>Detail</th>
-          </tr>
-        </thead>
-          <tbody>
-              <tr v-for="r in referee">
-                  <td>{{ r.RefereeFirst }}</td>
-                  <td>{{ r.RefereeLast }}</td>
-                  <td>{{ r.Age }}</td>
-                  <td>{{ r.RefereeGrade }}</td>
-                  <td>{{ r.RefereeSkill }}</td>
-                  <td>
-                    <button type="button" class="btn btn-outline-secondary btn-sm"
-                      v-on:click="selectReferee(r)">Detail</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-
-      </div>
+      <div id="reportApp" class="container">
+        <p><a href="../api/report/referee.php/?format=csv" download>Download as CSV</a></p>
+        <div class="row align-items-start">
+          <div class="col col-12">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th>RefereeID</th>
+                    <th>RefereeFirst</th>
+                    <th>Assignment Count</th>
+                  </tr>
+                </thead>
+                  <tbody>
+                      <tr v-for="a in gameAssignment">
+                          <td>{{ a.RefereeID }}</td>
+                          <td>{{ a.RefereeFirst }}</td>
+                          <td>{{ a.AssignmentCount }}</td>
+                      </tr>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+    </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 
-    <script src="../js/index.js"></script>
+    <script src="../js/report.js"></script>
   </body>
 </html>
