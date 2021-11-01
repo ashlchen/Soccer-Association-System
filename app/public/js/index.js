@@ -3,8 +3,10 @@ const SomeApp = {
       return {
         referee: [],
         selectedReferee: null,
+        selectedRefereeEdit: null,
         gameAssignment: [],
-        // offerForm: {}
+        game: [],
+        refereeForm: {}
       }
     },
     computed: {},
@@ -17,7 +19,7 @@ const SomeApp = {
             const d = new Intl.NumberFormat("en-US").format(n);
             return "$ " + d;
         },
-        selectReferee(r) {
+        selectRefereeDetail(r) {
             if (r == this.selectedReferee) {
                 return;
             }
@@ -25,8 +27,15 @@ const SomeApp = {
             this.gameAssignment = [];
             this.fetchGameAssignmentData(this.selectedReferee);
         },
+        selectRefereeEdit(r) {
+            if (r == this.selectedRefereeEdit) {
+                return;
+            }
+            this.selectedRefereeEdit = r;
+            this.refereeForm = r;
+        },
         fetchRefereeData() {
-            fetch('/api/referee/')
+            fetch('../api/referee/')
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -36,9 +45,20 @@ const SomeApp = {
                 console.error(err);
             })
         },
+        fetchGameData() {
+            fetch('../api/Game/')
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.game = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+        },
         fetchGameAssignmentData(r) {
             console.log("Fetching assignment data for ", r);
-            fetch('/api/referee/?referee=' + r.RefereeID)
+            fetch('../api/GameAssignment/index.php?RefereeID=' + r.RefereeID)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -51,28 +71,84 @@ const SomeApp = {
                 console.error(error);
             });
         },
-        postNewOffer(evt) {
-          this.offerForm.studentId = this.selectedStudent.id;        
-          console.log("Posting:", this.offerForm);
+        postReferee(evt) {
+            if (this.selectedRefereeEdit === null) {
+                this.postNewReferee(evt);
+            } else {
+                this.postEditReferee(evt);
+            }
+          },
+        postNewReferee(evt) {
+        //   this.refereeForm.RefereeID = this.selectedReferee.RefereeID;        
+          console.log("Posting:", this.refereeForm);
           // alert("Posting!");
   
-          fetch('api/offer/create.php', {
+          fetch('../api/referee/create.php', {
               method:'POST',
-              body: JSON.stringify(this.offerForm),
+              body: JSON.stringify(this.refereeForm),
               headers: {
-                "Content-Type": "application/json; charset=utf-8"
+                "Content-Type": "application/json; charset=utf-8",
+                'Accept': 'application/json'
               }
             })
             .then( response => response.json() )
             .then( json => {
               console.log("Returned from post:", json);
               // TODO: test a result was returned!
-              this.offers = json;
+              this.referee = json;
               
               // reset the form
-              this.offerForm = {};
+              this.refereeForm = {};
             });
-        }
+        },
+        postEditReferee(evt) {
+            this.refereeForm.RefereeID = this.selectedRefereeEdit.RefereeID;
+            
+            console.log("Updating!", this.refereeForm);
+    
+            fetch('../api/referee/update.php', {
+                method:'POST',
+                body: JSON.stringify(this.refereeForm),
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                }
+              })
+              .then( response => response.json() )
+              .then( json => {
+                console.log("Returned from post:", json);
+                // TODO: test a result was returned!
+                this.referee = json;
+                
+                this.resetRefereeForm();
+              });
+          },
+        postDeleteReferee(r) {
+            if (!confirm("Are you sure you want to delete the referee "+r.RefereeFirst+"?")) {
+                return;
+            }
+            
+            fetch('../api/referee/delete.php', {
+                method:'POST',
+                body: JSON.stringify(r),
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                }
+              })
+              .then( response => response.json() )
+              .then( json => {
+                console.log("Returned from post:", json);
+                // TODO: test a result was returned!
+                this.referee = json;
+                
+                this.resetRefereeForm();
+              });
+          },
+        resetRefereeForm() {
+            this.selectedReferee = null;
+            this.selectedRefereeEdit = null;
+            this.refereeForm = {};
+          }
+      
     },
     created() {
         this.fetchRefereeData();
