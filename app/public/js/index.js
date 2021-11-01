@@ -32,8 +32,7 @@ const SomeApp = {
                 return;
             }
             this.selectedRefereeEdit = r;
-            this.refereeForm = [];
-            this.fetchRefereeData();
+            this.refereeForm = r;
         },
         fetchRefereeData() {
             fetch('../api/referee/')
@@ -59,7 +58,7 @@ const SomeApp = {
         },
         fetchGameAssignmentData(r) {
             console.log("Fetching assignment data for ", r);
-            fetch('../api/GameAssignment/detailassignment.php/?RefereeID=' + r.RefereeID)
+            fetch('../api/GameAssignment/index.php?RefereeID=' + r.RefereeID)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -73,7 +72,7 @@ const SomeApp = {
             });
         },
         postReferee(evt) {
-            if (this.selectedReferee === null) {
+            if (this.selectedRefereeEdit === null) {
                 this.postNewReferee(evt);
             } else {
                 this.postEditReferee(evt);
@@ -96,15 +95,14 @@ const SomeApp = {
             .then( json => {
               console.log("Returned from post:", json);
               // TODO: test a result was returned!
-              this.offers = json;
+              this.referee = json;
               
               // reset the form
               this.refereeForm = {};
             });
         },
         postEditReferee(evt) {
-            this.refereeForm.RefereeID = this.selectedReferee.RefereeID;
-            this.refereeForm.id = this.selectedReferee.id;       
+            this.refereeForm.RefereeID = this.selectedRefereeEdit.RefereeID;
             
             console.log("Updating!", this.refereeForm);
     
@@ -119,7 +117,7 @@ const SomeApp = {
               .then( json => {
                 console.log("Returned from post:", json);
                 // TODO: test a result was returned!
-                this.offers = json;
+                this.referee = json;
                 
                 this.resetRefereeForm();
               });
@@ -140,13 +138,14 @@ const SomeApp = {
               .then( json => {
                 console.log("Returned from post:", json);
                 // TODO: test a result was returned!
-                this.offers = json;
+                this.referee = json;
                 
                 this.resetRefereeForm();
               });
           },
         resetRefereeForm() {
             this.selectedReferee = null;
+            this.selectedRefereeEdit = null;
             this.refereeForm = {};
           }
       

@@ -5,36 +5,27 @@ require 'class/DbConnection.php';
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-$sql = 'SELECT 
-    GameID, 
-    RefereeID, 
-    PositionStatus
-FROM GameAssignment WHERE RefereeID = ?';
-
+$sql = 'SELECT * FROM GameAssignment';
 $vars = [];
+
+if (isset($_GET['GameID'])) {
+  // This is an example of a parameterized query
+  $sql = 'SELECT * FROM GameAssignment WHERE GameID = ?';
+
+  //NOT THIS WAY
+  // $sql = 'SELECT * FROM offer WHERE studentId = ' . $_GET['student'];
+
+  $vars = [ $_GET['GameID'] ];
+}
 
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$offers = $stmt->fetchAll();
+$referee = $stmt->fetchAll();
 
-
-// if (isset($_GET['format']) && $_GET['format']=='csv') {
-//     header('Content-Type: text/csv');
-
-//     echo "Name,Username,MaxSalary,OfferCount\r\n";
-
-//     foreach($offers as $o) {
-//         echo "\"".$o['name'] ."\","
-//             .$o['username'] .','
-//             .$o['maxSalary'] .','
-//             .$o['offerCount'] ."\r\n";
-//     }
-// } else {
 // Step 3: Convert to JSON
-$json = json_encode($offers, JSON_PRETTY_PRINT);
+$json = json_encode($referee, JSON_PRETTY_PRINT);
 
 // Step 4: Output
 header('Content-Type: application/json');
 echo $json;
-}

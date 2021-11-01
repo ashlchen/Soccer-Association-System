@@ -117,7 +117,7 @@
                     <option value="Accepted">Accepted</option>
                   </select>
                 </div> -->
-                <button type="submit" class="btn btn-primary">{{ selectedGame === null ? "Add" : "Edit" }} Game</button>
+                <button type="submit" class="btn btn-primary">{{ selectedGameEdit === null ? "Add" : "Edit" }} Game</button>
                 <button type="button" class="btn btn-outline-secondary" 
                   v-if="selectedGame"
                   v-on:click="resetGameForm">Cancel</button>
@@ -138,23 +138,18 @@
                       <td>{{ g.GameID }}</td>
                       <td>{{ g.PositionStatus }}</td>
                       <td></td>
-                      <!-- <td>
-                        <button type="button" class="btn btn-outline-secondary btn-sm"
-                          v-on:click="selectOffer(offer)">Edit</button>
-                        <button type="button" class="btn btn-outline-secondary btn-sm"
-                          v-on:click="postDeleteOffer(offer)">Delete</button>
-                      </td>
+                      
                   </tr>
               </tbody>
           </table>
        
     
-        </div> -->
+        </div>
   
       </div>
 
       </div>
-
+      </div>
       
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>

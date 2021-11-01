@@ -32,7 +32,7 @@ if (isset($_GET['format']) && $_GET['format']=='csv') {
     }
 } else {
 // Step 3: Convert to JSON
-$json = json_encode($gameAssignment, JSON_PRETTY_PRINT);
+$json = json_encode($offers, JSON_PRETTY_PRINT);
 
 // Step 4: Output
 header('Content-Type: application/json');

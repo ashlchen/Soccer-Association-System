@@ -22,8 +22,7 @@ const AssignmentApp = {
                 return;
             }
             this.selectedAssignmentEdit = a;
-            this.assignmentForm = [];
-            this.fetchAssignmentData();
+            this.assignmentForm = a;
         },
         fetchAssignmentData() {
           fetch('../api/GameAssignment/')
@@ -67,8 +66,7 @@ const AssignmentApp = {
             });
         },
         postEditAssignment(evt) {
-            this.assignmentForm.AssignmentID = this.selectedAssignment.RefereeID;
-            this.assignmentForm.AssignmentID = this.selectedAssignment.id;       
+            this.assignmentForm.AssignmentID = this.selectedAssignmentEdit.AssignmentID;
             
             console.log("Updating!", this.assignmentForm);
     
@@ -112,6 +110,7 @@ const AssignmentApp = {
         resetAssignmentForm() {
             this.selectedAssignment = null;
             this.assignmentForm = {};
+            this.selectedAssignmentEdit = null;
           }
       
     },

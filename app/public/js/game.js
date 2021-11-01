@@ -35,8 +35,7 @@ const GameApp = {
                 return;
             }
             this.selectedGameEdit = g;
-            this.gameForm = [];
-            this.fetchGameData();
+            this.gameForm = g;
         },
         // fetchRefereeData() {
         //     fetch('../api/referee/')
@@ -60,9 +59,9 @@ const GameApp = {
                 console.error(err);
             })
         },
-        fetchGameAssignmentData(r) {
+        fetchGameAssignmentData(g) {
             console.log("Fetching assignment data for ", g);
-            fetch('../api/GameAssignment/detailassignment.php/?GameID=' + g.GameID)
+            fetch('../api/GameAssignment/detailassignment.php?GameID=' + g.GameID)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -99,15 +98,14 @@ const GameApp = {
             .then( json => {
               console.log("Returned from post:", json);
               // TODO: test a result was returned!
-              this.offers = json;
+              this.game = json;
               
               // reset the form
               this.gameForm = {};
             });
         },
         postEditGame(evt) {
-            this.gameForm.GameID = this.selectedGame.GameID;
-            this.gameForm.id = this.selectedGame.id;       
+            this.gameForm.GameID = this.selectedGame.GameID; 
             
             console.log("Updating!", this.gameForm);
     
@@ -122,7 +120,7 @@ const GameApp = {
               .then( json => {
                 console.log("Returned from post:", json);
                 // TODO: test a result was returned!
-                this.offers = json;
+                this.game = json;
                 
                 this.resetGameForm();
               });
@@ -151,6 +149,7 @@ const GameApp = {
         resetGameForm() {
             this.selectedGame = null;
             this.gameForm = {};
+            this.selectedGameEdit = null;
           }
       
     },
