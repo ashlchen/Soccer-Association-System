@@ -26,6 +26,7 @@ CREATE TABLE GameAssignment (
 	ON DELETE CASCADE ON UPDATE CASCADE,
 	RefereeID int NOT NULL REFERENCES Referee(RefereeID)
 	ON DELETE CASCADE ON UPDATE CASCADE,
+	PositionName varchar(255) NOT NULL,
 	PositionStatus varchar(255) NOT NULL,
 	PRIMARY KEY(AssignmentID)
 );
@@ -45,10 +46,10 @@ VALUES
 ('Indy Sports Park', '2021-10-30'),
 ('Yeagley Field', '2021-11-23');
 
-INSERT INTO GameAssignment (GameID, RefereeID, PositionStatus)
+INSERT INTO GameAssignment (GameID, RefereeID, PositionName, PositionStatus)
 VALUES 
-(1,4, 'Tentative'),
-(2,2, 'Unassigned'),
-(3,2, 'Accepted'),
-(4,2, 'Assigned');
+(1,4, 'Head','Tentative'),
+(2,2, 'Assist 1', 'Unassigned'),
+(3,2, 'Assist 2', 'Accepted' ),
+(4,2, 'Assist 3', 'Assigned');
 

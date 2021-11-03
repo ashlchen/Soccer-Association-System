@@ -74,6 +74,7 @@
             <tr>
               <th>Game ID</th>
               <th>Referee ID</th>
+              <th>Position Name</th>
               <th>Position Status</th>
               <th>Edit</th>
               <th>Delete</th>
@@ -83,6 +84,7 @@
                 <tr v-for="a in gameAssignment">
                     <td>{{ a.GameID }}</td>
                     <td>{{ a.RefereeID }}</td>
+                    <td>{{ a.PositionName }}</td>
                     <td>{{ a.PositionStatus }}</td>
                     <!-- <td>
                       <button type="button" class="btn btn-outline-secondary btn-sm"
@@ -137,6 +139,14 @@
                     </option>
                   </select>
                   
+                </div>
+                <div class="mb-3">
+                  <label for="PositionName" class="form-label">Position Name <span class="reqd">*</span></label>
+                  <select v-model="assignmentForm.PositionName" class="form-select" id="PositionName" required="required">
+                    <option v-for="a in gameAssignment" :value="a.PositionName">
+                      {{ a.PositionName }}
+                    </option>
+                  </select>
                 </div>
                 <div class="mb-3">
                   <label for="PositionStatus" class="form-label">Position Status <span class="reqd">*</span></label>
