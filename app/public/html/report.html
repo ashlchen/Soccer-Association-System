@@ -5,20 +5,36 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
-
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
-    <style>
-      body {background-color: #957bcfc2;}
-    </style>
-    <title>Login</title>
-    <script src="https://unpkg.com/vue@next"></script>
 
+    <title>ISRA Game Assignments</title>
+    <style>
+      body {background-color: #F6F3E7;}
+      .button {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+}
+      .button1 {border-radius: 12px;
+        background-color: #C7AD7F;}
+
+      .button2 {border-radius: 12px;
+        background-color: #C7AD7F;}
+
+        .right {
+  text-align: right;
+}
+
+    </style>
   </head>
   <body>
-    
-
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">ISRA</a>
@@ -47,35 +63,33 @@
       </div>
     </nav>
 
-    <h1 class="text-center">Log into your ISRA Account:</h1>
-      <br>
-      <br>
-      <br>
+    <h1 class="text-center">Indiana Soccer Referees Association</h1>
+    <h3 class="text-center">Welcome to the ISRA Game Assignments</h3>
+    <h5 class="text-center">Spring 2022</h5>
 
-      <div class="center">
-      <div id="my-signin2"></div>
-    </div>
-      <script>
-        function onSuccess(googleUser) {
-          console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-        }
-        function onFailure(error) {
-          console.log(error);
-        }
-        function renderButton() {
-          gapi.signin2.render('my-signin2', {
-            'scope': 'profile email',
-            'width': 240,
-            'height': 50,
-            'longtitle': true,
-            'theme': 'dark',
-            'onsuccess': onSuccess,
-            'onfailure': onFailure
-          });
-        }
-      </script>
-    
-      <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="home.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="assignment.html">Assignments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="schedule.html">Schedule</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Season Scores</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+      </ul>
+
+     
+
+      <button class="button button1" onclick="document.location='view_position.html'">Game Report</button>
+      <button class="button button2" onclick="document.location='game.html'">Referee Report</button>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
