@@ -100,13 +100,21 @@
         <h3>{{ selectedAssignmentEdit === null ? "Add" : "Edit" }} Assignment</h3>
               <form v-on:submit.prevent="postAssignment">
                 <div class="mb-3">
-                  <label for="GameID" class="form-label">Game ID <span class="reqd">*</span></label>
-                  <input type="text" v-model="assignmentForm.GameID"
-                   class="form-control" id="GameID" required="required">
+                  <label for="GameID" class="form-label">Game <span class="reqd">*</span></label>
+                  <select v-model="assignmentForm.GameID" class="form-select" id="GameID" required="required">
+                    <option v-for="g in game" :value="g.GameID">
+                      {{ g.Field }}
+                    </option>
+                  </select>
                 </div>
                 <div class="mb-3">
-                  <label for="RefereeID" class="form-label">RefereeID <span class="reqd">*</span></label>
-                  <input type="text" v-model="assignmentForm.RefereeID" class="form-control" id="RefereeID" required="required">
+                  <label for="RefereeID" class="form-label">Referee <span class="reqd">*</span></label>
+                  <select v-model="assignmentForm.RefereeID" class="form-select" id="RefereeID" required="required">
+                    <option v-for="r in referee" :value="r.RefereeID">
+                      {{ r.RefereeFirst }}
+                    </option>
+                  </select>
+                  
                 </div>
                 <div class="mb-3">
                   <label for="PositionStatus" class="form-label">Position Status <span class="reqd">*</span></label>
