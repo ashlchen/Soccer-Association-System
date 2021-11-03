@@ -141,9 +141,10 @@
                 <div class="mb-3">
                   <label for="PositionStatus" class="form-label">Position Status <span class="reqd">*</span></label>
                   <select v-model="assignmentForm.PositionStatus" class="form-select" id="PositionStatus" required="required">
-                    <option value="Pending">Pending</option>
+                    <option value="Pending">Tentative</option>
                     <option value="Accepted">Accepted</option>
                     <option value="Unassigned">Unassigned</option>
+                    <option value="Unassigned">Assigned</option>
                   </select>
                 </div>
                 <button type="submit" class="btn btn-primary">{{ selectedAssignmentEdit === null ? "Add" : "Edit" }} Assignment</button>
