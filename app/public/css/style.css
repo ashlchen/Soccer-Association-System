@@ -1,4 +1,8 @@
 body {background-color: #F6F3E7;}
+
+h1 {color: darkred; font-style:italic; 
+}
+
 .button {
   background-color: #04AA6D;
   border: none;
