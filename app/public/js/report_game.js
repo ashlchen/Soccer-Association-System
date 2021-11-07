@@ -6,6 +6,10 @@ const reportgameApp = {
     },
     computed: {},
     methods: {
+        prettyData(d) {
+            return dayjs(d)
+            .format('D MMM YYYY')
+        },
         fetchGameData() {
             fetch('/api/report/game.php')
             .then( response => response.json() )

@@ -9,10 +9,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 
     <title>ISRA Game Assignments</title>
-    <style>
-      body {background-color: #957bcfc2;}
-    </style>
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+    
     <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
   </head>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -33,10 +33,10 @@
             <a class="nav-link" href="game.html">Games</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="schedule.html">Schedule</a>
+            <a class="nav-link" href="referee.html">Referee</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="login.html">Login</a>
+            <a class="nav-link" href="report.html">Report</a>
           </li>
          </ul>
       </div>
@@ -44,9 +44,9 @@
   </nav>
 
   <body>
-    <h1 class="text-center">Indiana Soccer Referees Association</h1>
+    <!-- <h1 class="text-center">Indiana Soccer Referees Association</h1>
     <h3 class="text-center">Welcome to the ISRA Game Assignments</h3>
-    <h5 class="text-center">Spring 2022</h5>
+    <h5 class="text-center">Spring 2022</h5> -->
 
 
     
@@ -62,8 +62,8 @@
             <h1>Details for {{ selectedReferee.RefereeFirst }}</h1> -->
 
 
-      <div class="col col-6"><h1>Referee List</h1>      
-      <div>      
+      <div class="column col-lg-6 col-md-12 col-sm-12"><h1>Referee List</h1>      
+    
       <table class="table">
         <thead>
           <tr>
@@ -100,11 +100,8 @@
               </tr>
           </tbody>
       </table>
-      </div>  
-    
-      
-
-      <div class="col col-6">
+      </div>
+      <div class="col col-lg-6 col-md-12 col-sm-12">
         <h3>{{ selectedRefereeEdit === null ? "Add" : "Edit" }} Referee</h3>
               <form v-on:submit.prevent="postReferee">
                 <div class="mb-3">
@@ -121,11 +118,11 @@
                   <input type="number" v-model="refereeForm.Age" class="form-control" id="age" required="required">
                 </div>
                 <div class="mb-3">
-                  <label for="grade" class="form-label">Grade<span class="reqd">*</span></label>
+                  <label for="grade" class="form-label">Grade (0-10)<span class="reqd">*</span></label>
                   <input type="number" v-model="refereeForm.RefereeGrade" class="form-control" id="grade" required="required">
                 </div>
                 <div class="mb-3">
-                  <label for="rating" class="form-label">Private Rating <span class="reqd">*</span></label>
+                  <label for="rating" class="form-label">Private Rating (0-100) <span class="reqd">*</span></label>
                   <input type="number" v-model="refereeForm.RefereeSkill" class="form-control" id="rating" required="required">
                 </div>
                 <!-- <div class="mb-3">
@@ -137,13 +134,9 @@
                 </div> -->
                 <button type="submit" class="btn btn-primary">{{ selectedRefereeEdit === null ? "Add" : "Edit" }} Referee</button>
                 <button type="button" class="btn btn-outline-secondary" 
-                  v-if="selectedReferee"
                   v-on:click="resetRefereeForm">Cancel</button>
               </form>
         </div>
-    
-     
-      </div>
       <div v-if="selectedReferee">
         <h1>Game Assignment Detail for {{ selectedReferee.RefereeFirst }}</h1>
         <table class="table">

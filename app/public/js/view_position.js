@@ -4,7 +4,10 @@ const AssignmentApp = {
         selectedAssignmentEdit: null,
         gameAssignment: [],
         assignmentForm: {},
-        selectedAssignment: null
+        selectedAssignment: null,
+        referee: [],
+        selectedReferee: null,
+        selectedRefereeEdit: null
       }
     },
     computed: {},
@@ -25,6 +28,32 @@ const AssignmentApp = {
             this.assignmentForm = [];
             this.fetchAssignmentData();
         },
+        selectRefereeDetail(r) {
+          if (r == this.selectedReferee) {
+              return;
+          }
+          this.selectedReferee = r;
+          this.gameAssignment = [];
+          this.fetchGameAssignmentData(this.selectedReferee);
+      },
+      selectRefereeEdit(r) {
+          if (r == this.selectedRefereeEdit) {
+              return;
+          }
+          this.selectedRefereeEdit = r;
+          this.refereeForm = r;
+      },
+      fetchRefereeData() {
+          fetch('../api/referee/')
+          .then( response => response.json() )
+          .then( (responseJson) => {
+              console.log(responseJson);
+              this.referee = responseJson;
+          })
+          .catch( (err) => {
+              console.error(err);
+          })
+      },
         fetchAssignmentData() {
           fetch('../api/GameAssignment/')
           .then( response => response.json() )
@@ -117,6 +146,7 @@ const AssignmentApp = {
     },
     created() {
         this.fetchAssignmentData();
+        this.fetchRefereeData();
     }
   
   }

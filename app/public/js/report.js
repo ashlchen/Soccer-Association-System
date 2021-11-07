@@ -6,6 +6,10 @@ const reportApp = {
     },
     computed: {},
     methods: {
+        prettyData(d) {
+            return dayjs(d)
+            .format('D MMM YYYY')
+        },
         fetchAssignmentData() {
             fetch('/api/report/referee.php')
             .then( response => response.json() )

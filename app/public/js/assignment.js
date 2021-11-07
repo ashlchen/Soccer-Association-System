@@ -27,7 +27,7 @@ const AssignmentApp = {
             this.assignmentForm = a;
         },
         fetchAssignmentData() {
-          fetch('../api/GameAssignment/')
+          fetch('../api/GameAssignment/index.php')
           .then( response => response.json() )
           .then( (responseJson) => {
               console.log(responseJson);
@@ -60,7 +60,7 @@ const AssignmentApp = {
           })
       },
         postAssignment(evt) {
-            if (this.selectedAssignment === null) {
+            if (this.selectedAssignmentEdit === null) {
                 this.postNewAssignment(evt);
             } else {
                 this.postEditAssignment(evt);
@@ -86,7 +86,7 @@ const AssignmentApp = {
               this.gameAssignment = json;
               
               // reset the form
-              this.assignmentForm = {};
+              this.resetAssignmentForm();
             });
         },
         postEditAssignment(evt) {

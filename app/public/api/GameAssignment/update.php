@@ -1,10 +1,5 @@
 <?php
 
-// if (($_SERVER['REQUEST_METHOD'] ?? '') != 'POST') {
-//     header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed");
-//     exit;
-// }
-
 try {
     $_POST = json_decode(
                 file_get_contents('php://input'), 
@@ -34,13 +29,15 @@ $stmt = $db->prepare(
   'UPDATE GameAssignment SET
     GameID = ?,
     RefereeID = ?,
-    PositionStatus = ?,
+    PositionName = ?,
+    PositionStatus = ?
   WHERE AssignmentID = ?'
 );
 
 $stmt->execute([
   $_POST['GameID'],
   $_POST['RefereeID'],
+  $_POST['PositionName'],
   $_POST['PositionStatus'],
   $_POST['AssignmentID']
 ]);

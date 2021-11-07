@@ -5,7 +5,7 @@ require 'class/DbConnection.php';
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-$sql = 'SELECT * FROM GameAssignment';
+$sql = 'SELECT * FROM GameAssignment ORDER BY GameID';
 $vars = [];
 
 if (isset($_GET['RefereeID'])) {

@@ -22,12 +22,12 @@ CREATE TABLE Game (
 DROP TABLE IF EXISTS GameAssignment;
 CREATE TABLE GameAssignment (
 	AssignmentID int NOT NULL AUTO_INCREMENT,
-	GameID int NOT NULL REFERENCES Game(GameID)
-	ON DELETE CASCADE ON UPDATE CASCADE,
-	RefereeID int NOT NULL REFERENCES Referee(RefereeID)
-	ON DELETE CASCADE ON UPDATE CASCADE,
+	GameID int NOT NULL, 
+    FOREIGN KEY(GameID) REFERENCES Game(GameID) ON UPDATE CASCADE ON DELETE CASCADE,
+	RefereeID int, 
+    FOREIGN KEY(RefereeID) REFERENCES Referee(RefereeID) ON UPDATE CASCADE ON DELETE CASCADE,
 	PositionName varchar(255) NOT NULL,
-	PositionStatus varchar(255) NOT NULL,
+	PositionStatus varchar(255) NOT NULL DEFAULE 'Unassigned',
 	PRIMARY KEY(AssignmentID)
 );
 
@@ -48,8 +48,8 @@ VALUES
 
 INSERT INTO GameAssignment (GameID, RefereeID, PositionName, PositionStatus)
 VALUES 
-(1,4, 'Head','Tentative'),
-(2,2, 'Assist 1', 'Unassigned'),
-(3,2, 'Assist 2', 'Accepted' ),
-(4,2, 'Assist 3', 'Assigned');
+(1,4, 'Head','Pending'),
+(2,3, 'Assist1', 'Pending'),
+(3,2, 'Assist2', 'Pending' ),
+(4,1, 'Assist3', 'Pending');
 
