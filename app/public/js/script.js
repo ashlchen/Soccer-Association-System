@@ -1,34 +1,53 @@
-const reportApp = {
+const reports = {
     data() {
       return {
-        gameAssignment: []
-      }
+        selectedRefereeDetails: null,
+        dateReportForm: {},
+        assignDetail: {},
+        referee: {}
+       }
     },
-    computed: {},
-    methods: {
-        prettyData(d) {
-            return dayjs(d)
-            .format('D MMM YYYY')
-        },
-        fetchAssignmentData() {
-            fetch('/api/report/referee.php')
+    
+    methods:{
+        selectReferee() {
+            this.selectedRefereeDetails= this.dateReportForm;
+            fetch('/api/report/index.php', {
+              method:'POST',
+              body: JSON.stringify(this.dateReportForm),
+              headers: {
+                "Content-Type": "application/json; charset=utf-8"
+              }
+            })
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
-                this.gameAssignment = responseJson;
+                this.assignDetail = responseJson;
             })
-            .catch( (error) => {
-                console.error(error);
-            });
+            .catch( (err) => {
+                console.error(err);
+            })
+        },
+        fetchRefereeData() {
+            fetch('/api/referee/index.php')
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.referee = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
         }
     },
-    created() {
-        this.fetchAssignmentData();
+
+    created(){
+      this.fetchRefereeData();
     }
   }
-  
-  Vue.createApp(reportApp).mount('#reportApp');
 
+  Vue.createApp(reports).mount('#ReportApp');
+
+  
   function downloadCSV(csv, filename) {
     var csvFile;
     var downloadLink;

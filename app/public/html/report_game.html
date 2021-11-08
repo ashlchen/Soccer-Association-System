@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+     <!-- Boostrap Link
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+     -->
     <!--jQuery CDN-->
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     
@@ -22,14 +25,15 @@
     <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 
+    
+    
     <title>ISRA Game Assignments</title>
     <link href="../css/style.css" rel="stylesheet" type="text/css">
     
-    <!-- <script src="https://unpkg.com/vue@next"></script>
-    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script> -->
+    
+       
 
   </head>
-
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">ISRA</a>
@@ -57,42 +61,69 @@
       </div>
     </div>
   </nav>
-  
+
   <body>
     <!-- <h1 class="text-center">Indiana Soccer Referees Association</h1>
     <h3 class="text-center">Welcome to the ISRA Game Assignments</h3>
-    <h5 class="text-center">Spring 2022</h5> -->
+    <h5 class="text-center">Spring 2022</h5>
+ -->
 
+   
 
+ <div  class ="container">
+ 
+ <div id="ReportApp" class="row"> 
+  <!-- TABLE of Reports -->
+  <h1 id="ReportApp">Report Details</h1>
+  <form class="ui form" v-on:submit.prevent="selectReferee">
+    <div class="field">
+        <label>Referee</label> &nbsp;
+        <select v-model="dateReportForm.RefereeID"  id="RefereeID">
+            <option v-for="ref in referee" :value= 'ref.RefereeID' >{{ ref.RefereeFirst }}</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Beginning Date</label> &nbsp;
+        <input type="date" v-model="dateReportForm.startDate" placeholder="GameDate">
+      </div>
+      <div class="field">
+        <label>Ending Date</label> &nbsp;
+        <input type="date" v-model="dateReportForm.endDate" placeholder="GameDate">
+      </div>
 
-      <div id="reportApp" class="container">
-        <button class="btn btn-primary" onclick="exportTableToCSV('Referee.csv')">Download as CSV</button>
-        
-        <div class="row align-items-start">
-          <div class="col col-12">
-            <table class="table">
-                <thead>
-                  <tr>
-                    <th>RefereeID</th>
-                    <th>RefereeFirst</th>
-                    <th>Assignment Count</th>
-                  </tr>
-                </thead>
-                  <tbody>
-                      <tr v-for="a in gameAssignment">
-                          <td>{{ a.RefereeID }}</td>
-                          <td>{{ a.RefereeFirst }}</td>
-                          <td>{{ a.AssignmentCount }}</td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-        </div>
-    </div>
+      <button class="btn btn-success" type="submit"> View Report</button> &nbsp;
+      <button class="btn btn-primary" onclick="exportTableToCSV('RefereeAssignments.csv')">Download as CSV</button>
+  </form>  
+  <div  v-if="selectedRefereeDetails">
 
+    <h2>List of Assignments from {{selectedRefereeDetails.startDate}} to {{selectedRefereeDetails.endDate}} </h2>
+    <table class="ui fixed single line celled table">
+        <thead>
+          <tr>  
+            <th>Field</th>
+            <th>Position Status</th>
+            <th>GameDate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="assign in assignDetail">
+            <td>{{ assign.Field }}</td>
+            <td>{{ assign.PositionStatus }}</td>
+            <td>{{ assign.GameDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div>    
+</div>
+ </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 
-    <script src="../js/report.js"></script>
+    <script src="../js/script.js"></script>
+    <!-- tablesort plugin from http://tristen.ca/tablesort/demo/-->
+  <!-- <script src="js/tablesort.min.js"></script>
+  <script>
+    new Tablesort(document.getElementById('taskTable'));
+  </script> -->
   </body>
 </html>
