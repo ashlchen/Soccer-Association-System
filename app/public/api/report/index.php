@@ -20,7 +20,7 @@ require ('class/DbConnection.php');
 $db = DbConnection::getConnection();
 // This is an example of a parameterized query
 $sql = 'SELECT Game.Field, Game.GameDate, GameAssignment.PositionStatus, GameAssignment.RefereeID, GameAssignment.AssignmentID 
-        FROM Game INNER JOIN GameAssignment ON Game.GameID = GameAssignment.GameID 
+        FROM Game LEFT OUTER JOIN GameAssignment ON Game.GameID = GameAssignment.GameID 
         WHERE GameAssignment.RefereeID = ? AND Game.GameDate >? AND Game.GameDate<? ;';
 
 $vars = [ $_POST['RefereeID'],

@@ -1,4 +1,4 @@
-MYSQL_DATABASE=larsproject
-MYSQL_HOST=lars-project.cs99618j63xr.us-east-2.rds.amazonaws.com
-MYSQL_USER=larsadmin
-MYSQL_PASSWORD=larsSecretpassword
+MYSQL_DATABASE=portfolio
+MYSQL_HOST= portfolio.cvdygwmlcyar.us-east-2.rds.amazonaws.com
+MYSQL_USER=ashlchen
+MYSQL_PASSWORD=st094107
