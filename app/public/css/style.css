@@ -1,4 +1,11 @@
+
 body {background-color: #F6F3E7;}
+
+/* Navigation */
+.Navbar {
+    justify-content: space-between;
+    width: 100%
+}
 
 h1 {color: darkred; font-style:italic; 
 }
@@ -7,18 +14,23 @@ h1 {color: darkred; font-style:italic;
   background-color: #04AA6D;
   border: none;
   color: white;
-  padding: 20px;
+  padding: 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 12px;
   margin: 4px 2px;
 }
 .button1:hover {border-radius: 12px;
         background-color: #C7AD7F;}
-.button1 {border-radius: 12px;
-background-color: #6e4a0a;
-color: white;}
+.button1 {
+    border-radius: 12px;
+    background-color: #6e4a0a;
+    color: white;
+    display: flex;
+    margin-right: 10px;
+    position: relative;
+}
 
 .button2:hover {border-radius: 12px;
         background-color: #C7AD7F;}
