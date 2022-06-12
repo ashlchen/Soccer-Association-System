@@ -52,14 +52,7 @@
     
     <div id="offerApp" class="container">
     <div class="row align-items-start">
-        <!-- <div v-for="r in referee" v-on:click="selectReferee(r)"
-             :class="['referee', {selected: selectedReferee && r.RefereeID == selectedReferee.RefereeID}]">
-              <span class="RefereeFirst">{{ r.RefereeFirst }}</span><br>
-            </div>
-          </div>
 
-          <div  v-if="selectedReferee">
-            <h1>Details for {{ selectedReferee.RefereeFirst }}</h1> -->
 
 
       <div class="column col-lg-6 col-md-12 col-sm-12"><h1>Referee List</h1>      
@@ -125,13 +118,7 @@
                   <label for="rating" class="form-label">Private Rating (0-100) <span class="reqd">*</span></label>
                   <input type="number" v-model="refereeForm.RefereeSkill" class="form-control" id="rating" required="required">
                 </div>
-                <!-- <div class="mb-3">
-                  <label for="rating" class="form-label">Private Rating <span class="reqd">*</span></label>
-                  <select v-model="refereeForm.RefereeSkill" class="form-select" id="rating" required="required">
-                    <option value="Declined">Declined</option>
-                    <option value="Accepted">Accepted</option>
-                  </select>
-                </div> -->
+ 
                 <button type="submit" class="btn btn-primary">{{ selectedRefereeEdit === null ? "Add" : "Edit" }} Referee</button>
                 <button type="button" class="btn btn-outline-secondary" 
                   v-on:click="resetRefereeForm">Cancel</button>
@@ -151,12 +138,7 @@
                     <td>{{ g.GameID }}</td>
                     <td>{{ g.PositionStatus }}</td>
                     <td></td>
-                    <!-- <td>
-                      <button type="button" class="btn btn-outline-secondary btn-sm"
-                        v-on:click="selectOffer(offer)">Edit</button>
-                      <button type="button" class="btn btn-outline-secondary btn-sm"
-                        v-on:click="postDeleteOffer(offer)">Delete</button>
-                    </td> -->
+
                 </tr>
             </tbody>
         </table>
