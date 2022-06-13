@@ -17,3 +17,5 @@ The application is a web app for a soccer association. It runs on Azure app serv
 - Manage game information
 
 URL: https://larsfinalproject.azurewebsites.net/html/home.html
+
+<img width="960" alt="image" src="https://user-images.githubusercontent.com/84329848/173402308-e6fdefd8-4107-4d73-b311-3937d495e6c2.png">
