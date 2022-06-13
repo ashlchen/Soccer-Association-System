@@ -1,13 +1,32 @@
 /* General Template */
 
 body {
-	background-color: #F6F3E7;
+	background-color: white;
+}
+
+.navbar{
+	padding-top: 0rem;
+	padding-bottom: 0.1rem;
 }
 
 /* Navigation */
 .Navbar {
     justify-content: space-between;
-    width: 100%
+    width: 100%;
+	background-color: darkred;
+
+}
+.navbar-light .navbar-brand {
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .show>.nav-link {
+    color:white;
+}
+
+.navbar-light .navbar-nav .nav-link.active:hover {
+	color: gray;
+
 }
 
 .background{
@@ -15,7 +34,9 @@ body {
 }
 
 h1 {
-    color: white; font-style:italic; 
+    color: white; 
+	font-style:italic; 
+	margin-bottom: 0%;
 }
 h3{
     color:Gray;
