@@ -1,5 +1,8 @@
+/* General Template */
 
-body {background-color: #F6F3E7;}
+body {
+	background-color: #F6F3E7;
+}
 
 /* Navigation */
 .Navbar {
@@ -10,49 +13,6 @@ body {background-color: #F6F3E7;}
 .background{
     background-color: darkred;
 }
-
-/* Container holding the image and the text */
-.container_img {
-    position: relative;
-    text-align: center;
-    color: white;
-  }
-
-.img{
-    opacity: 50%;
-}
-  
-  /* Bottom left text */
-.center-left {
-position: absolute;
-bottom: 50%;
-left: 16px;
-color: white;
-font-size: xx-large;
-font-weight: bold;
-text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.user_button {
-    position: absolute;
-    bottom: 50%;
-    left: 20%;
-    color: white;
-    font-size: xx-large;
-    font-weight: bold;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    }
-
-.admin_button {
-    position: absolute;
-    bottom: 50%;
-    right: 20%;
-    color: white;
-    font-size: xx-large;
-    font-weight: bold;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    }
-
 
 h1 {
     color: white; font-style:italic; 
@@ -114,6 +74,54 @@ h3{
     float: left;
     width: 50%;
   }
+
+
+
+/* Login Page */
+/* Container holding the image and the text */
+.container_img {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+
+.img{
+    opacity: 50%;
+}
+  
+/* Bottom left text */
+.center-left {
+position: absolute;
+bottom: 50%;
+left: 16px;
+color: white;
+font-size: xx-large;
+font-weight: bold;
+text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.user_button {
+    position: absolute;
+    bottom: 50%;
+    left: 20%;
+    color: white;
+    font-size: xx-large;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+
+.admin_button {
+    position: absolute;
+    bottom: 50%;
+    right: 20%;
+    color: white;
+    font-size: xx-large;
+    font-weight: bold;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    }
+
+
+
   
   /* Clear floats after the columns */
 .row:after {
@@ -122,17 +130,14 @@ h3{
     clear: both;
   }
 
-  /* body {
-    font-family: sans-serif;
-    background-color: #81d4fa;
-    font-weight: bold;
-} */
 
 .text-box {
     margin-left: 44vw;
    margin-top: 42vh;
 }
 
+
+/* Assginor Pages */
 /* assignor menu cards */
 .conatiner_card {
 	width: 100%;
